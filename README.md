@@ -7,19 +7,21 @@
 <img src="https://www.ibm.com/blogs/client-voices/wp-content/uploads/2019/09/Glinnt.jpg"   
 >
 </p>
-​
+
+ 
 ## 🏥 **Estancia hospitalaria** 🏥
 
 La hospitalización, o estancia hospitalaria, cuando es prolongada constituye una preocupación a nivel mundial debido a sus efectos negativos en el sistema de salud, aumentando los costos, generando deficiencia en la accesibilidad de prestación de servicios de salud, saturación de unidades de hospitalización y urgencias, por consiguiente, mayores efectos adversos como lo son las enfermedades intrahospitalarias.
 
 El estudio de los procesos de atención en salud, así como el conocimiento de las características y perfiles de los usuarios con el objetivo de predecir la ocupación hospitalaria, es uno de los aspectos al que las autoridades de salud han prestado gran interés, pues permite no sólo garantizar los recursos necesarios para la atención del paciente, sino realizar ajustes respecto a la oferta y demanda de los servicios de salud y los implementos asociados.
-​
-Introducción
+
+ 
+## **Introducción**
 En un principio, nos encontramos ante un problema de clasificación, tenemos que predecir ante nuevos registros de pacientes si su estadía va a ser larga o corta(Clasificación binaria). Estadia corta: cuando dura 8 o menos días, y larga se considera a las estadias que duran mas de 8 dias.
 
 El objetivo de esta clasificacion es que en base a los registros historicos, podamos administrar la demanda de camas segun la condicion en la que llegan los pacientes recien ingresados. Para qué? Para mejorar la eficiencia en la prestacion de servicios de salud, disminuir los costos y la saturacion de hospitales, evitar enfermedades intrahospitalarias, que son todos efectos negativos derivados de las estancias hospitalarias prolongadas.
- ​
- EDA y Preprocesamiento de datos
+ 
+## **EDA y Preprocesamiento de datos**
 En esta parte, trabajamos en el notebook llamado 'Proyecto.ipynb', en el cual están detallados y en orden cada uno de los pasos del proceso. En primer lugar, ingestamos la data y obtuvimos un pantallazo(exploración de los datos) para empezar a entrar en confianza con la misma. Pudimos ver el tamaño de los datos(filas y columnas), en detalle cada una de las variables y el tipo de datos de cada columna, y un resumen estadístico de las variables numericas.
 
 Seguimos con la búsqueda y el tratamiento de valores nulos(no había), de valores duplicados(tampoco había) y de los valores outliers que los detectamos a simple vista con graficos como el de boxplot(de caja y bigotes/brazos).
@@ -32,8 +34,8 @@ Utilizamos otros gráficos como Pairplot y la matriz de Correlación que tambien
 
 Finalmente decidí utilizar un dataframe con estas columnas:(['habitaciones_disponibles', 'area', 'doctor', 'personal_disponibles', 'visitas','seguro', 'deposito', 'target', 'gravedad_enc', 'edad_enc']
 
-​
- Machine Learning
+
+## **Machine Learning**
 Ante el problema de clasificación, decidimos utlizar algunos modelos los cuale fuimos probando y observando como actuaban al predecir. En un principio, empezamos con modelos mas simples(arbol de decision, regresion logistica) y fuimos avanzando con modelos mas complejos con los cuales nos quedamos.
 
 1- Modelo de ensamble Bagging para el arbol de decision : decidimos utilizar este porque es un conjunto de modelos de ML, que se combinan para obtener una unica prediccion y su principal ventaja es que al ser diferentes modelos, los errores tienden a compensarse y obteniendo asi un mejor error de generalizacion.
@@ -50,9 +52,9 @@ Las predicciones las pasamos a un dataframe y las guardamos en un csv para subir
 
 3- Por ultimo, utilizamos un Arbol de decision con max_depth=10 y tambien aplicamos el GridSearch para ajustar parámetros.
  
- ​
+ 
 ## **Métrica a utilizar**
-​
+
 Como método de evaluación del desempeño del modelo, se utilizará la métrica de Exhaustividad (Recall) para las estadías hospitalarias largas, a partir de la matriz de confusión (Confusion Matrix). Cómo métrica adicional utilizamos la precisión(accuracy) para verificar el desempeño del modelo.
  
  $$ Recall=\frac{TP}{TP+FN}$$
