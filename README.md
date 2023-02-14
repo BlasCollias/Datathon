@@ -21,6 +21,8 @@ En un principio, nos encontramos ante un problema de clasificación, tenemos que
 
 El objetivo de esta clasificacion es que en base a los registros historicos, podamos administrar la demanda de camas segun la condicion en la que llegan los pacientes recien ingresados. Para qué? Para mejorar la eficiencia en la prestacion de servicios de salud, disminuir los costos y la saturacion de hospitales, evitar enfermedades intrahospitalarias, que son todos efectos negativos derivados de las estancias hospitalarias prolongadas.
  
+***
+
 ## **EDA y Preprocesamiento de datos**
 En esta parte, trabajamos en el notebook llamado 'Proyecto.ipynb', en el cual están detallados y en orden cada uno de los pasos del proceso. En primer lugar, ingestamos la data y obtuvimos un pantallazo(exploración de los datos) para empezar a entrar en confianza con la misma. Pudimos ver el tamaño de los datos(filas y columnas), en detalle cada una de las variables y el tipo de datos de cada columna, y un resumen estadístico de las variables numericas.
 
@@ -34,23 +36,37 @@ Utilizamos otros gráficos como Pairplot y la matriz de Correlación que tambien
 
 Finalmente decidí utilizar un dataframe con estas columnas:(['habitaciones_disponibles', 'area', 'doctor', 'personal_disponibles', 'visitas','seguro', 'deposito', 'target', 'gravedad_enc', 'edad_enc']
 
+***
 
 ## **Machine Learning**
-Ante el problema de clasificación, decidimos utlizar algunos modelos los cuale fuimos probando y observando como actuaban al predecir. En un principio, empezamos con modelos mas simples(arbol de decision, regresion logistica) y fuimos avanzando con modelos mas complejos con los cuales nos quedamos.
+Ante el problema de clasificación, decidimos utlizar algunos modelos los cuales fuimos probando y observando como actuaban al predecir. En un principio, empezamos con modelos mas simples(arbol de decision, regresion logistica) y fuimos avanzando con modelos mas complejos con los cuales nos quedamos.
+
+### **Random Forest:**
+ Este fue el modelo definitivo, lo elegimos porque una de sus ventajas es que maneja bien hasta miles de variables e identifica las mas importantes, siendo un metodo de reduccion de dimensionalidad. La separación de nuestra data la realizamos con train_test_split.
+
+#### **Parámetros**
+
+- La cantidad de arboles que va a tener el bosque y elegí 100 que es un buen valor por defecto(n_estimators). 
+
+- n_jobs = -1 que indica que va a utilizar tantos cores como tiene la máquina.
+
+- random_state=42 que es el tipo de aleatoriedad
+- max_features='sqrt' que se refiere a tomar las n_features que tengas.
+
+ Además podiamos jugar con otros parametros como max_depth, min_samples_split y min_samples_leaf.
+
+
+El score del bosque(porque son varios arboles) sobre la importancia de las variables, es un promedio que se normaliza a partir de la desviación estandar. En mi caso decidí mostrar la importancia de los gráficos tambien en un grafico de barras hecho en seaborn(librería de Python).Adjunto la imagen donde se pueden aprenciar las variables más importantes.
+
+
+[![imagen-2023-02-14-181503894.png](https://i.postimg.cc/Ssds3yJ7/imagen-2023-02-14-181503894.png)](https://postimg.cc/627tGxVy)
+
+**Modelos Extra**
 
 1- Modelo de ensamble Bagging para el arbol de decision : decidimos utilizar este porque es un conjunto de modelos de ML, que se combinan para obtener una unica prediccion y su principal ventaja es que al ser diferentes modelos, los errores tienden a compensarse y obteniendo asi un mejor error de generalizacion.
 
-2- Random Forest: Este fue el definitivo, lo elegimos porque una de sus ventajas es que maneja bien hasta miles de variables e identifica las mas importantes, siendo un metodo de reduccion de dimensionalidad.
 
-Le pasamos como parametro: la cantidad de arboles que va a tener el bosque y elegí 100 que es un buen valor por defecto(n_estimators), n_jobs = -1 que indica que va a utilizar tantos cores como tiene la máquina, random_state=42 que es el tipo de aleatoriedad, max_features='sqrt' que se refiere a tomar las n_features que tengas. Además podiamos jugar con otros parametros como max_depth, min_samples_split y min_samples_leaf.
-
-Separamos nuestra data con train_test_split pero podriamos haberlo hecho tambien con otros metodos como cross_validation o k-folds por ejemplo.
-
-El score del bosque(porque son varios arboles) sobre la importancia de las variables, es un promedio que se normaliza a partir de la desviación estandar. En mi caso decidí mostrarlos tambien en un grafico de barras el cual las mostraba ordenadas.
-
-Las predicciones las pasamos a un dataframe y las guardamos en un csv para subirlo al dashboard.
-
-3- Por ultimo, utilizamos un Arbol de decision con max_depth=10 y tambien aplicamos el GridSearch para ajustar parámetros.
+2- Por ultimo, utilizamos un Arbol de decision con max_depth=10 y tambien aplicamos el GridSearch para ajustar parámetros.
  
  
 ## **Métrica a utilizar**
@@ -64,8 +80,12 @@ Como método de evaluación del desempeño del modelo, se utilizará la métrica
  $$ Accuracy=\frac{TP+TN}{P+N}$$
 
 Siendo $TP$ los verdaderos positivos, $TN$ verdaderos negativos y $P+N$ población total.
+
+## **Resultado obtenido**
  
  Para finalizar y plasmar los resultados conseguidos, generamos un archivo .csv con las predicciones, el cual contiene una sola columna con todos los valores que predecimos. Con el mismo, obtuvimos un accuracy de 0.72 y un recall de 0.74
+
+ [![Whats-App-Image-2023-02-14-at-6-04-49-PM.jpg](https://i.postimg.cc/6pMMWZgD/Whats-App-Image-2023-02-14-at-6-04-49-PM.jpg)](https://postimg.cc/qNCsQNkL)
 
 
 
