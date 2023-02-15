@@ -33,6 +33,9 @@ Escalamos(con el metodo StandardScaler) algunas variables y normalizamos las cat
 
 Visualizacion de datos: Mediante graficos countplot de la librería seaborn, vimos la distribucion de algunas variables respecto a la variable target y sacamos buenas conclusiones como por ejemplo: en el area/departamento de anestesia y cirugía solo se presentaban casos de estadias largas, había 2 de los doctores(Simon y Isaac) que a todos los pacientes que atendian derivaban en una estadia larga. Tambien, que los de edad>50 años terminaban siendo siempre casos de estadia larga y otras conclusiones mas que nos ayudaron o guiaron para ver qué variables podían pesar mas o tener mas importancia a la hora de realizar un modelo de machine learning.
 
+ En este gráfico observamos que los pacientes con más de 50 años derivan siempre en una estadía larga.
+ [![imagen-2023-02-15-012352804.png](https://i.postimg.cc/MT56zWxd/imagen-2023-02-15-012352804.png)](https://postimg.cc/Fdf5ZXYL)
+ 
 Utilizamos otros gráficos como Pairplot y la matriz de Correlación que tambien te permiten observar a simple vista, algunas relaciones y la fuerza de esas relaciones entre variables.
 
 Finalmente decidí utilizar un dataframe con estas columnas:(['habitaciones_disponibles', 'area', 'doctor', 'personal_disponibles', 'visitas','seguro', 'deposito', 'target', 'gravedad_enc', 'edad_enc']
