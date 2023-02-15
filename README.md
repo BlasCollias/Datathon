@@ -21,6 +21,7 @@ En un principio, nos encontramos ante un problema de clasificación, tenemos que
 
 El objetivo de esta clasificacion es que en base a los registros historicos, podamos administrar la demanda de camas segun la condicion en la que llegan los pacientes recien ingresados. Para qué? Para mejorar la eficiencia en la prestacion de servicios de salud, disminuir los costos y la saturacion de hospitales, evitar enfermedades intrahospitalarias, que son todos efectos negativos derivados de las estancias hospitalarias prolongadas.
  
+Tecnologías utilizadas: el proyecto fue desarrollado exclusivamente en Python con variadas librerías(Pandas, Numpy,Matplotlib Sklearn y Seaborn). 
 ***
 
 ## **EDA y Preprocesamiento de datos**
